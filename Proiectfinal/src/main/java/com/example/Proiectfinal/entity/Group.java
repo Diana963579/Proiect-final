@@ -1,6 +1,7 @@
 package com.example.Proiectfinal.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Group {
@@ -8,16 +9,25 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String NumeGrup;
     private String codGrupa;
 
-    @OneToOne(mappedBy = "grupa")
+    @OneToMany(mappedBy = "grupa")
     private Student student;
 
-    public Group(Long id, String codGrupa, Student student) {
+    public Group(Long id, String codGrupa, Student student, String numeGrup) {
         this.id = id;
         this.codGrupa = codGrupa;
+        this.NumeGrup = numeGrup;
         this.student = student;
+    }
+
+    public Group(Long id) {
+        this.id = id;
+    }
+
+    public Group() {
+
     }
 
     public Long getId() {
@@ -42,5 +52,13 @@ public class Group {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public String getNumeGrup() {
+        return NumeGrup;
+    }
+
+    public void setNumeGrup(String numeGrup) {
+        NumeGrup = numeGrup;
     }
 }

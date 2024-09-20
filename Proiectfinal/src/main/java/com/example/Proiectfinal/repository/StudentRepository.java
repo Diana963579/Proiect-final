@@ -2,6 +2,8 @@ package com.example.Proiectfinal.repository;
 
 import com.example.Proiectfinal.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    }
+    List<Student> findByGrupId(Long grupId);
+}

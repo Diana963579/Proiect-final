@@ -1,7 +1,6 @@
 package com.example.Proiectfinal.entity;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -10,8 +9,9 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nume;
+    private String prenume;
+    private String titlu;
     private String materie;
 
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL)
@@ -22,6 +22,16 @@ public class Teacher {
         this.nume = nume;
         this.materie = materie;
         this.cursuri = cursuri;
+        this.prenume = prenume;
+        this.titlu = titlu;
+    }
+
+    public Teacher(String titlu) {
+        this.titlu = titlu;
+    }
+
+    public Teacher() {
+
     }
 
     public Long getId() {
@@ -54,5 +64,21 @@ public class Teacher {
 
     public void setCursuri(List<Course> cursuri) {
         this.cursuri = cursuri;
+    }
+
+    public String getPrenume() {
+        return prenume;
+    }
+
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
+    }
+
+    public String getTitlu() {
+        return titlu;
+    }
+
+    public void setTitlu(String titlu) {
+        this.titlu = titlu;
     }
 }

@@ -18,12 +18,9 @@ public class Student {
     private StudyLevel studyLevel;
     private String numarMatricol;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "grupa_id")
     private Group group;
-
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<Note> note;
 
     public Student(Long id,String nume, String prenume,int age, StudyLevel studyLevel, String numarMatricol) {
         this.nume = nume;

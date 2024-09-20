@@ -2,6 +2,7 @@ package com.example.Proiectfinal.service;
 
 import com.example.Proiectfinal.entity.Student;
 import com.example.Proiectfinal.enums.StudyLevel;
+import com.example.Proiectfinal.exceptions.StudentNotFoundException;
 import com.example.Proiectfinal.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,6 +18,19 @@ public class StudentService {
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+
+    public Student gasesteStudentDupaId(Long id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Studentul cu id-ul " + id + " nu a fost găsit"));
+    }
+
+    public List<Student> gasesteStudentiDinGrup(Long grupId) {
+        List<Student> studenti = studentRepository.findByGrupId(grupId);
+        if (studenti.isEmpty()) {
+            throw new StudentNotFoundException("Nu au fost găsiți studenți în grupul cu id-ul " + grupId);
+        }
+        return studenti;
     }
 
     public List<Student> getAllStudents() {

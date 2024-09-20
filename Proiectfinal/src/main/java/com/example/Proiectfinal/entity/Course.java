@@ -1,7 +1,7 @@
 package com.example.Proiectfinal.entity;
 
 import jakarta.persistence.*;
-
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +17,7 @@ public class Course {
     @JoinColumn(name = "profesor_id")
     private Teacher teacher;
 
-    @OneToMany(mappedBy = "curs", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "cursuri", cascade = CascadeType.ALL)
     private Set<Note> note;
 
     public Course(Long id, String numeCurs, Teacher teacher, Set<Note> note) {
@@ -25,6 +25,14 @@ public class Course {
         this.numeCurs = numeCurs;
         this.teacher = teacher;
         this.note = note;
+    }
+
+    public Course(Long id) {
+        this.id = id;
+    }
+
+    public Course() {
+
     }
 
     public Long getId() {

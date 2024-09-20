@@ -8,7 +8,6 @@ import com.example.Proiectfinal.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -16,6 +15,18 @@ import java.util.List;
 
 public class StudentController {
 
+    @PostMapping("/adauga")
+    public Student adaugaStudent(@RequestBody Student student) {
+        // Poți folosi obiectul primit direct sau creezi unul nou dacă e cazul
+        return new Student(student.getId(), student.getNume(), student.getPrenume(), student.getAge(), student.getStudyLevel(),student.getNumarMatricol());
+    }
+
+    @GetMapping("/exemplu")
+    public Student Student() {
+
+        // Creezi un obiect Student pentru testare
+        return new Student(1L, "Ion", "Popescu", 22, StudyLevel.LICENTA,"CIG");
+    }
     private final StudentService studentService;
 
     public StudentController(StudentService studentService) {

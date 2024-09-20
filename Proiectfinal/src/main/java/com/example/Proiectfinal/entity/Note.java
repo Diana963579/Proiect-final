@@ -26,6 +26,14 @@ public class Note {
         this.course = course;
     }
 
+    public Note(int valoare) {
+        this.valoare = valoare;
+    }
+
+    public Note() {
+
+    }
+
     public Long getId() {
         return id;
     }
